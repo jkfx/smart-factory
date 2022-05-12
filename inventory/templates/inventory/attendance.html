@@ -1,0 +1,43 @@
+{% extends 'inventory/base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<h1 class="h3 mb-2 text-gray-800">员工考勤</h1>
+<p class="mb-4">查看员工考勤时间表，通过人脸识别对员工进行签到。</p>
+
+<div class="button-group" align="left" >
+    <a href="{% url 'inventory:facerec' %}" class="btn btn-primary" role="button" > 人脸签到 </a>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">员工签到时间表</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>姓名</th>
+                        <th>签到时间</th>
+                    </tr>
+                </thead>
+                <tbody align="center">
+                    {% for e in signintab %}
+                    <tr>
+
+                        <td>{{ e.id }} </td>
+                        <td>{{ e.employee }} </td>
+                        <td>{{ e.signintime }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

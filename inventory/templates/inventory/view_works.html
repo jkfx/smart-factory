@@ -1,0 +1,43 @@
+{% extends 'inventory/base.html' %}
+
+{% block body %}
+
+<h1 class="h3 mb-2 text-gray-800">{{ emp.name }} 工作细节</h1>
+<p class="mb-4">查看到目前为止{{ emp.name }}所做工作的所有细节</p>
+
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary"> {{ emp.name }} 记录 </h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>产品</th>
+            <th>重量</th>
+          </tr>
+        </thead>
+        <tbody align="center">
+      		<ul> 
+      			{% for w in wk %} 
+      				<tr>
+                <td>{{ w.id }} </td>
+                <td>{{ w.product }} </td> 
+                <td>{{ w.weight }} </td>
+    		      </tr> 
+            {% endfor %}
+          </ul>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div class="button-group" align="right" >
+  <a href="{% url 'inventory:add_work' emp.id %}" class="btn btn-primary" role="button" > 添加工作任务 </a>
+</div>
+
+{% endblock %}
